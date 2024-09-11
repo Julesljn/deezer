@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Storage;
 class PlaylistController extends Controller
 {
     public function index()
-{
-    $playlists = Playlist::all(); // Récupère toutes les playlists depuis la bdd
-    return view('home', compact('playlists')); 
-}
+    {
+        $playlists = Playlist::all(); // Récupère toutes les playlists depuis la bdd
+        return view('home', compact('playlists'));
+    }
 
 
     public function store(Request $request) // Ajoute la playlist en bdd
@@ -35,16 +35,16 @@ class PlaylistController extends Controller
         return redirect()->route('home')->with('success', 'Playlist créée avec succès');
     }
 
-   
-    public function destroy($id) // Supprime la playlist de la bdd
-{
-    $playlist = Playlist::findOrFail($id);
-    if ($playlist->image) {
-        Storage::disk('public')->delete($playlist->image);
-    }
-    $playlist->delete();
-    return redirect()->route('home')->with('success', 'Playlist supprimée avec succès');
 
-}
+    public function destroy($id) // Supprime la playlist de la bdd
+    {
+        $playlist = Playlist::findOrFail($id);
+        if ($playlist->image) {
+            Storage::disk('public')->delete($playlist->image);
+        }
+        $playlist->delete();
+        return redirect()->route('home')->with('success', 'Playlist supprimée avec succès');
+
+    }
 
 }
