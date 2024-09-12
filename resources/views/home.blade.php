@@ -12,7 +12,7 @@
     <header class="flex flex-col items-center mt-5 ">
         <h1 class="font-title text-6xl relative inline-block">
             <span class="bg-gif bg-clip-text text-transparent">
-                Deezer
+                <a href="/">Deezer</a>
             </span>
         </h1>
     </header>
