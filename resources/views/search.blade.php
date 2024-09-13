@@ -19,56 +19,36 @@
     <main class="flex justify-center my-16">
         <div class="bg-[#F3EEE7] w-[90vw] h-[70vh] rounded-lg flex">
             <div class="flex flex-col w-[30vw] p-4">
-                <form class="flex gap-3" action="" method="POST">
-                    <input class="w-[16vw] bg-[#2E2F31] text-[#F3EEE7] input rounded-md p-2" type="search" placeholder="Rechercher le nom d'un artiste">
-                    <button class="py-2 px-8 bg-blue-600 text-white rounded hover:bg-blue-700">Recherchez</button>
+                <form class="flex gap-3" action="{{ route('search.artist') }}" method="POST">
+                    @csrf
+                    <input class="w-[16vw] bg-[#2E2F31] text-[#F3EEE7] input rounded-md p-2" type="search"
+                        name="artist" placeholder="Rechercher le nom d'un artiste" required>
+                    <button class="py-2 px-8 bg-blue-600 text-white rounded hover:bg-blue-700">Rechercher</button>
                 </form>
+
                 <div class="flex flex-col items-center gap-5 mt-10">
-                    <img class="w-48 h-48" src="{{asset('images/replacement_image.png') }}" alt="">
-                    <h2>Koba la D</h2>
+                    @if (isset($artistPicture) && isset($artistName))
+                        <img class="w-48 h-48" src="{{ $artistPicture }}" alt="Photo de {{ $artistName }}">
+                        <h2>{{ $artistName }}</h2>
+                    @elseif(isset($error))
+                        <p>{{ $error }}</p>
+                    @else
+                        <img class="w-48 h-48" src="{{ asset('images/replacement_image.png') }}"
+                            alt="Photo de remplacement">
+                        <h2>Nom de l'artiste</h2>
+                    @endif
                 </div>
             </div>
-            <div>
-                <ul >
+
+            <div class="flex items-center">
+                <ul class="h-[50vh] flex flex-wrap flex-col gap-10">
                     <li class="flex items-center gap-4">
-                         <img class="w-16 h-16" src="{{asset('images/replacement_image.png') }}" alt="">
-                         <h3>La vie est belle</h3>
-                    </li>
-                    <li class="flex items-center gap-4">
-                         <img class="w-16 h-16" src="{{asset('images/replacement_image.png') }}" alt="">
-                         <h3>La vie est belle</h3>
-                    </li>
-                    <li class="flex items-center gap-4">
-                         <img class="w-16 h-16" src="{{asset('images/replacement_image.png') }}" alt="">
-                         <h3>La vie est belle</h3>
-                    </li>
-                    <li class="flex items-center gap-4">
-                         <img class="w-16 h-16" src="{{asset('images/replacement_image.png') }}" alt="">
-                         <h3>La vie est belle</h3>
-                    </li>
-                    <li class="flex items-center gap-4">
-                         <img class="w-16 h-16" src="{{asset('images/replacement_image.png') }}" alt="">
-                         <h3>La vie est belle</h3>
-                    </li>
-                    <li class="flex items-center gap-4">
-                         <img class="w-16 h-16" src="{{asset('images/replacement_image.png') }}" alt="">
-                         <h3>La vie est belle</h3>
-                    </li>
-                    <li class="flex items-center gap-4">
-                         <img class="w-16 h-16" src="{{asset('images/replacement_image.png') }}" alt="">
-                         <h3>La vie est belle</h3>
-                    </li>
-                    <li class="flex items-center gap-4">
-                         <img class="w-16 h-16" src="{{asset('images/replacement_image.png') }}" alt="">
-                         <h3>La vie est belle</h3>
-                    </li>
-                    <li class="flex items-center gap-4">
-                         <img class="w-16 h-16" src="{{asset('images/replacement_image.png') }}" alt="">
-                         <h3>La vie est belle</h3>
-                    </li>
-                    <li class="flex items-center gap-4">
-                         <img class="w-16 h-16" src="{{asset('images/replacement_image.png') }}" alt="">
-                         <h3>La vie est belle</h3>
+                        <img class="w-16 h-16" src="{{ asset('images/replacement_image.png') }}" alt="">
+                        <h3>La vie est belle</h3>
+                        <form method="POST" action="">
+                            <button
+                                class="mt-1 py-2 px-2 bg-green-600 text-white rounded hover:bg-green-700">Ajouter</button>
+                        </form>
                     </li>
                 </ul>
             </div>
