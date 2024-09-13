@@ -13,7 +13,7 @@ class DeezerController extends Controller
 
         // Recherche api (ne pas faire ça seulement local)
         $response = Http::withOptions(['verify' => false])->get("https://api.deezer.com/search/artist?q=" . urlencode($artistName));
-
+            // Recupérer en même temps l'id et $topTracksResponse = Http::get("https://api.deezer.com/artist/{$artistId}/top"
         $artistData = $response->json();
 
         // Check
