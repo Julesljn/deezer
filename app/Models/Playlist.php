@@ -10,4 +10,10 @@ class Playlist extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'image'];
+
+    public function tracks()
+    {
+        return $this->belongsToMany(Track::class, 'playlist_track');
+    }
+
 }

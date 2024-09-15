@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Playlist;
+use App\Models\Track;
 use Illuminate\Support\Facades\Storage;
 
 class PlaylistController extends Controller
@@ -12,6 +13,11 @@ class PlaylistController extends Controller
     {
         $playlists = Playlist::all(); // Récupère toutes les playlists depuis la bdd
         return view('home', compact('playlists'));
+    }
+    public function pSearch()
+    {
+        $playlists = Playlist::all(); // Récupère toutes les playlists depuis la bdd
+        return view('search', compact('playlists'));
     }
 
 
@@ -45,6 +51,33 @@ class PlaylistController extends Controller
         $playlist->delete();
         return redirect()->route('home')->with('success', 'Playlist supprimée avec succès');
 
+    }
+
+    public function addTrack(Request $request)
+    {
+        $validated = $request->validate([
+            'track_title' => 'required|string',
+            'artist_name' => 'required|string',
+            'deezer_id' => 'required|string',
+            'playlist_id' => 'required|exists:playlists,id',
+        ]);
+
+        $track = Track::firstOrCreate([ // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!///////////\\\\\\\\\
+            'deezer_id' => $validated['deezer_id'],
+        ], [
+            'title' => $validated['track_title'],
+            'artist' => $validated['artist_name'],
+        ]);
+
+        // Récupérer la playlist
+        $playlist = Playlist::find($validated['playlist_id']);
+
+        // Ajouter la track à la playlist
+        if (!$playlist->tracks->contains($track->id)) {
+            $playlist->tracks()->attach($track->id);
+        }
+
+        return redirect()->back()->with('success', 'Musique ajoutée à la playlist !');
     }
 
 }

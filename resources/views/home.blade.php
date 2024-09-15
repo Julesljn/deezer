@@ -29,7 +29,7 @@
                     @csrf
                     <button type="submit" class="mt-1 px-1 py-1 bg-red-500 text-white rounded hover:bg-red-600">Supprimer</button>
                 </form>
-           </article>
+           </article>                       
            @endforeach
 
         </div>
