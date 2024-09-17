@@ -33,6 +33,7 @@
            @endforeach
         </div>
         <div>
+            
             <a class="py-2 px-8 bg-blue-600 text-white rounded hover:bg-blue-700" href="/search">Rechercher un artiste</a>
         </div>
         <div class="bg-[#F3EEE7] flex flex-col gap-10 w-[20vw] items-center rounded-lg py-4">

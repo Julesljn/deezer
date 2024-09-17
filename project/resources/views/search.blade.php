@@ -36,11 +36,6 @@
                     @if (isset($artistPicture) && isset($artistName))
                         <img class="w-48 h-48" src="{{ $artistPicture }}" alt="Photo de {{ $artistName }}">
                         <h2>{{ $artistName }}</h2>
-                    @elseif(isset($error))
-                        <p>{{ $error }}</p>
-                    @else
-                        <img class="w-48 h-48" src="{{ asset('images/replacement_image.png') }}" alt="Photo de remplacement">
-                        <h2>Nom de l'artiste</h2>
                     @endif
                 </div>
             </div>
