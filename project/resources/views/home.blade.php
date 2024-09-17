@@ -31,7 +31,6 @@
                 </form>
            </article>                       
            @endforeach
-
         </div>
         <div>
             <a class="py-2 px-8 bg-blue-600 text-white rounded hover:bg-blue-700" href="/search">Rechercher un artiste</a>

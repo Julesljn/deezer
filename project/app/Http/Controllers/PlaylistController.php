@@ -11,7 +11,7 @@ class PlaylistController extends Controller
 {
     public function index()
     {
-        $playlists = Playlist::all(); // Récupère toutes les playlists depuis la bdd
+        $playlists = Playlist::all(); // Récupère toutes les playlists depuis la bdd // Paginate
         return view('home', compact('playlists'));
     }
     public function pSearch()

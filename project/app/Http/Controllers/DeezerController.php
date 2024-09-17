@@ -10,7 +10,7 @@ class DeezerController extends Controller
 {
     public function search(Request $request)
 {
-    $playlists = Playlist::all(); // Récupère toutes les playlists
+    $playlists = Playlist::all(); // Récupère toutes les playlists // Paginate
 
     $artistName = $request->input('artist');
 
