@@ -18,32 +18,39 @@
     </header>
     <main class="px-52 mt-12 flex justify-between">
         <div class="bg-[#F3EEE7] flex flex-col gap-10 w-[20vw] items-center rounded-lg py-4">
-           <h2 class="text-2xl m-1">Mes playlists :</h2>
-           <div class="w-[20vw] border-t-[1px] border-solid border-black"></div>
+            <h2 class="text-2xl m-1">Mes playlists :</h2>
+            <div class="w-[20vw] border-t-[1px] border-solid border-black"></div>
 
-           @foreach($playlists as $playlist)
-           <article class="flex flex-col items-center">
-                <img class="w-32 h-32" src="{{ $playlist->image ? asset('storage/' . $playlist->image) : asset('images/replacement_image.png') }}" alt="Image de la playlist">
-                <h3 class="text-xl">{{ $playlist->name }}</h3>
-                <form action="{{ route('playlists.destroy', $playlist->id) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="mt-1 px-1 py-1 bg-red-500 text-white rounded hover:bg-red-600">Supprimer</button>
-                </form>
-           </article>                       
-           @endforeach
+            @foreach ($playlists as $playlist)
+                <article class="flex flex-col items-center">
+                    <img class="w-32 h-32"
+                        src="{{ $playlist->image ? asset('storage/' . $playlist->image) : asset('images/replacement_image.png') }}"
+                        alt="Image de la playlist">
+                    <h3 class="text-xl">{{ $playlist->name }}</h3>
+                    <form action="{{ route('playlists.destroy', $playlist->id) }}" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="mt-1 px-1 py-1 bg-red-500 text-white rounded hover:bg-red-600">Supprimer</button>
+                    </form>
+                </article>
+            @endforeach
         </div>
         <div>
-            
-            <a class="py-2 px-8 bg-blue-600 text-white rounded hover:bg-blue-700" href="/search">Rechercher un artiste</a>
+
+            <a class="py-2 px-8 bg-blue-600 text-white rounded hover:bg-blue-700" href="/search">Rechercher un
+                artiste</a>
         </div>
         <div class="bg-[#F3EEE7] flex flex-col gap-10 w-[20vw] items-center rounded-lg py-4">
             <h2 class="text-2xl m-1">Créer une playlist :</h2>
             <div class="w-[20vw] border-t-[1px] border-solid border-black"></div>
-            <form class="flex flex-col items-center gap-10" action="{{ route('playlists.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="flex flex-col items-center gap-10" action="{{ route('playlists.store') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
-                <input class="w-[16vw] bg-[#2E2F31] text-[#F3EEE7] input rounded-md p-2" type="text" name="playlist_name" placeholder="Nom de la playlist" required>
+                <input class="w-[16vw] bg-[#2E2F31] text-[#F3EEE7] input rounded-md p-2" type="text"
+                    name="playlist_name" placeholder="Nom de la playlist" required>
                 <input class="w-[16vw] bg-[#2E2F31] text-[#F3EEE7] input rounded-md p-2" type="file" name="image">
-                <button type="submit" class="mt-1 py-2 px-8 bg-green-600 text-white rounded hover:bg-green-700">Créer</button>
+                <button type="submit"
+                    class="mt-1 py-2 px-8 bg-green-600 text-white rounded hover:bg-green-700">Créer</button>
             </form>
         </div>
     </main>
@@ -55,6 +62,7 @@
             background-clip: text;
             -webkit-background-clip: text;
         }
+
         .input::placeholder {
             color: #F3EEE7;
         }
